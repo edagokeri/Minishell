@@ -6,7 +6,7 @@
 /*   By: egokeri <egokeri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 20:40:50 by egokeri           #+#    #+#             */
-/*   Updated: 2023/10/31 17:39:41 by egokeri          ###   ########.fr       */
+/*   Updated: 2023/10/31 21:21:41 by egokeri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,12 @@ int	main(int ac, char **av, char **env)
 	init_app(env);
 	while (ac == 1 && av)
 	{
-		check_flag();
 		g_ms.ignore = FALSE;
 		signal(SIGINT, &ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
-		check_flag();
 		input = get_input();
 		ctrl_d(input);
+		check_flag();
 		if (g_ms.ignore)
 		{
 			free(input);
