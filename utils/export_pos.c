@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child_process.c                                    :+:      :+:    :+:   */
+/*   export_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egokeri <egokeri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 17:37:16 by egokeri           #+#    #+#             */
-/*   Updated: 2023/11/02 17:43:13 by egokeri          ###   ########.fr       */
+/*   Created: 2023/11/02 16:13:22 by egokeri           #+#    #+#             */
+/*   Updated: 2023/11/02 16:14:13 by egokeri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	child_process(void)
+int	export_pos(char *str, char *export)
 {
-	int	pid;
+	int		pos;
+	char	*tmp;
 
-	pid = fork();
-	if (!pid)
+	pos = 0;
+	while (export[pos] && export[pos] != '=')
+		pos++;
+	tmp = ft_substr(export, 0, pos);
+	if (ft_strcmp(tmp, str))
 	{
-		exit(1);
+		free (tmp);
+		return (TRUE);
 	}
-	return (pid);
+	free (tmp);
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: egokeri <egokeri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:46:38 by egokeri           #+#    #+#             */
-/*   Updated: 2023/10/31 12:48:45 by egokeri          ###   ########.fr       */
+/*   Updated: 2023/11/02 19:27:11 by egokeri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,22 @@ int	check_export(char *str)
 	return (TRUE);
 }
 
+int	export_check_char(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (!ft_isalpha(str[0]))
+		return (FALSE);
+	while (str[i] && str[i] != '=')
+	{
+		if (!ft_isalnum(str[i]))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 int	check_env(char *str)
 {
 	char	*head;
@@ -34,7 +50,12 @@ int	check_env(char *str)
 	if (!head)
 	{
 		if (check_export(str))
-			add_export(str);
+		{
+			if (export_check_char(str))
+				add_export(str);
+			else
+				export_err(str);
+		}
 		return (FALSE);
 	}
 	if (head == str)

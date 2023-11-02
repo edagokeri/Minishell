@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   child_process.c                                    :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egokeri <egokeri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 17:37:16 by egokeri           #+#    #+#             */
-/*   Updated: 2023/11/02 17:43:13 by egokeri          ###   ########.fr       */
+/*   Created: 2023/11/02 16:31:08 by egokeri           #+#    #+#             */
+/*   Updated: 2023/11/02 16:32:07 by egokeri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	child_process(void)
+int	ft_isalpha(int c)
 {
-	int	pid;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}
 
-	pid = fork();
-	if (!pid)
-	{
-		exit(1);
-	}
-	return (pid);
+int	ft_isalnum(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
 }
